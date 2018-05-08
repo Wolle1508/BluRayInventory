@@ -1,5 +1,5 @@
 function renderMainTableRow(result) {
-
+//TEST
     let row = document.createElement('tr');
     row.id = result.DISCID;
     let title = document.createElement('td');
