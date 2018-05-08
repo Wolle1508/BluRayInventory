@@ -14,6 +14,8 @@ con.connect(function (err) {
 
 //TODO: Refactor
 
+//TODO: Test
+
 let films;
 
 let succesAlert;
