@@ -12,8 +12,6 @@ con.connect(function (err) {
   if (err) throw err;
 });
 
-//TODO: Refactor
-
 
 let films;
 
@@ -72,7 +70,7 @@ function filter(searchCriteria, film) { //TODO: Improve Duration/Year
   return pass;
 }
 
-function editLine(discid) {
+function renderEditRow(discid) {
   let entryToEdit;
   for (var i = 0; i < films.length; i++) {
     if (films[i].DISCID == discid) entryToEdit = films[i];
@@ -83,12 +81,14 @@ function editLine(discid) {
       if (row[td].id != "optionCell" + discid) {
         let content = row[td].innerHTML;
         row[td].innerHTML = "";
-        if (row[td].id == "uhd" + discid) {
-          let check = document.createElement("input");
-          check.type = "checkbox"
-          if (content != "X") check.checked = true;
+        if (row[td].id == "uhd") {
 
-          row[td].appendChild(check);
+          if (content != "X") {
+            row[td].innerHTML = '<div class="form-check" style="margin-right: 15px; margin-top : 10px;"><label><input type="checkbox" name="check" checked id="uhd"><span class="label-text"></span></label></div>'
+          } else {
+            row[td].innerHTML = '<div class="form-check" style="margin-right: 15px; margin-top : 10px;"><label><input type="checkbox" name="check" id="uhd"><span class="label-text"></span></label></div>'
+          }
+
         } else {
           let textfield = document.createElement("input");
           textfield.className = "form-control";
@@ -101,9 +101,48 @@ function editLine(discid) {
         confirmButton.type = "button";
         confirmButton.innerHTML = "confirm";
         confirmButton.id = "confirm" + discid;
-        confirmButton.className = "btn btn-primary btn-sm";
+        confirmButton.className = "btn btn-success btn-sm";
+        confirmButton.style.marginTop = "18px";
         row[td].appendChild(confirmButton);
+
+        let cancelButton = document.createElement("button");
+        cancelButton.type = "button";
+        cancelButton.innerHTML = "cancel";
+        cancelButton.id = discid;
+        cancelButton.className = "btn btn-default btn-sm";
+        cancelButton.style.marginTop = "18px";
+        cancelButton.style.marginLeft = "5px";
+        cancelButton.addEventListener("click", function () {
+          cancelRowEdit(row, entryToEdit);
+        });
+        row[td].appendChild(cancelButton);
       }
+    }
+  }
+}
+
+function cancelRowEdit(row, entry) {
+  for (let i = 0; i < row.length; i++) {
+    if (!row[i].id.includes("option")) {
+      if (row[i].id != "uhd") {
+        let content = row[i].id.toUpperCase();
+        row[i].innerHTML = "";
+        row[i].innerHTML = entry[content];
+      } else {
+        if (entry.UHD = "NO") {
+          row[i].innerHTML = "";
+          row[i].innerHTML = "X";
+        } else {
+          row[i].innerHTML = "";
+          row[i].innerHTML = "&#x2713;"
+        }
+      }
+    } else {
+      row[i].childNodes[0].style.display = "block";
+      row[i].childNodes[0].style.marginLeft = "10px";
+
+      row[i].removeChild(row[i].childNodes[1]);
+      row[i].removeChild(row[i].childNodes[1]);
     }
   }
 }
