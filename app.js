@@ -41,12 +41,34 @@ window.onload = function () {
     let random = Math.floor((Math.random() * Object.size(films)) + 1);
     renderMainTableForRandom(films[random]);
   });
+  document.getElementById("durationButton").addEventListener("click", function (e) {
+    switchButton(e.srcElement);
+  });
+  document.getElementById("yearButton").addEventListener("click", function (e) {
+    switchButton(e.srcElement);
+  });
   getDBElements();
+}
+
+function switchButton(src) {
+  switch (src.value) {
+    case "=":
+      src.innerHTML = "<";
+      src.value = "<";
+      break;
+    case "<":
+      src.innerHTML = ">";
+      src.value = ">";
+      break;
+    case ">":
+      src.innerHTML = "=";
+      src.value = "=";
+      break;
+  }
 }
 
 function getDBElements() {
   con.query('SELECT * FROM blueray ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
-    console.log("quack");
     if (error) throw error;
     films = results;
   });
@@ -63,12 +85,25 @@ function clearInputs(inputs) {
 
 
 
-function filter(searchCriteria, film) { //TODO: Improve Duration/Year
+function filter(searchCriteria, film) {
   let pass = true;
+  console.log(searchCriteria);
+
   for (var criteria in searchCriteria) {
     if (searchCriteria.hasOwnProperty(criteria)) {
-      if (film[criteria.toUpperCase()].includes(searchCriteria[criteria]) == false) {
-        pass = false;
+      if (criteria == "duration" || criteria == "year") {
+        const condition = searchCriteria[criteria].condition;
+        if (condition == "=") {
+          if (film[criteria.toUpperCase()] != searchCriteria[criteria].value) pass = false;
+        } else if (condition == "<") {
+          if (film[criteria.toUpperCase()] > searchCriteria[criteria].value) pass = false;
+        } else if (condition == ">") {
+          if (film[criteria.toUpperCase()] < searchCriteria[criteria].value) pass = false;
+        }
+      } else {
+        if (film[criteria.toUpperCase()].includes(searchCriteria[criteria]) == false) {
+          pass = false;
+        }
       }
     }
   }
@@ -110,7 +145,7 @@ function renderEditRow(discid) {
         confirmButton.className = "btn btn-success btn-sm";
         confirmButton.style.marginTop = "18px";
         confirmButton.addEventListener("click", function () {
-          updateFilm(discid, entryToEdit);          
+          updateFilm(discid, entryToEdit);
         })
         row[td].appendChild(confirmButton);
 
@@ -217,10 +252,28 @@ function calculateSearchCriteria() {
       if (inputs[input].type != "button") {
         if (inputs[input].id == "uhd") searchCriteria[inputs[input].id] = inputs[input].checked;
         else if (inputs[input].id == "franchise" && inputs[input].value == "All");
-        else if (inputs[input].value != "") searchCriteria[inputs[input].id] = inputs[input].value;
+        else if (inputs[input].value != "") {
+          if (inputs[input].id == "duration") {
+            let conVal = document.getElementById("durationButton").value;
+            searchCriteria[inputs[input].id] = {
+              value: inputs[input].value,
+              condition: conVal
+            }
+          } else if (inputs[input].id == "year") {
+            let conVal = document.getElementById("yearButton").value;
+            searchCriteria[inputs[input].id] = {
+              value: inputs[input].value,
+              condition: conVal
+            }
+          } else {
+            searchCriteria[inputs[input].id] = inputs[input].value;
+          }
+        }
       }
     }
   }
+  console.log(searchCriteria);
+
   return searchCriteria;
 }
 
@@ -254,7 +307,7 @@ function updateFilm(discid) {
       if (error) throw error;
       // succesAlert.style.display = "block"; FIXME: rerender Table without reloade
       // succesAlertContent.innerHTML = "Row successfully updated!";
-      location.reload();     
+      location.reload();
     });
   } catch (e) {
     dangerAlert.style.display = "block";
