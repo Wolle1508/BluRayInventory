@@ -41,7 +41,12 @@ window.onload = function () {
     let random = Math.floor((Math.random() * Object.size(films)) + 1);
     renderMainTableForRandom(films[random]);
   });
+  getDBElements();
+}
+
+function getDBElements() {
   con.query('SELECT * FROM blueray ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
+    console.log("quack");
     if (error) throw error;
     films = results;
   });
@@ -75,7 +80,7 @@ function renderEditRow(discid) {
   for (var i = 0; i < films.length; i++) {
     if (films[i].DISCID == discid) entryToEdit = films[i];
   }
-  let row = document.getElementById(discid).childNodes;
+  let row = document.getElementById("row" + discid).childNodes;
   for (var td in row) {
     if (row.hasOwnProperty(td)) {
       if (row[td].id != "optionCell" + discid) {
@@ -96,14 +101,17 @@ function renderEditRow(discid) {
           row[td].appendChild(textfield);
         }
       } else {
-        row[td].childNodes[0].style.display = "none"; //TODO: handel update
-        
+        row[td].childNodes[0].style.display = "none";
+
         let confirmButton = document.createElement("button");
         confirmButton.type = "button";
         confirmButton.innerHTML = "confirm";
         confirmButton.id = "confirm" + discid;
         confirmButton.className = "btn btn-success btn-sm";
         confirmButton.style.marginTop = "18px";
+        confirmButton.addEventListener("click", function () {
+          updateFilm(discid, entryToEdit);          
+        })
         row[td].appendChild(confirmButton);
 
         let cancelButton = document.createElement("button");
@@ -140,7 +148,7 @@ function cancelRowEdit(row, entry) {
       }
     } else {
       row[i].childNodes[0].style.display = "inline";
-      
+
       row[i].removeChild(row[i].childNodes[1]);
       row[i].removeChild(row[i].childNodes[1]);
     }
@@ -158,8 +166,6 @@ function insertNew() {
       inputs[i].style.backgroundColor = "";
     }
   }
-  // console.log(inputs.length);
-  // console.log(count);
   if (count == inputs.length - 1) {
     let queryString = "INSERT INTO BLUERAY (TITLE,DIRECTORS,DURATION,STUDIO,FRANCHISE,YEAR,UHD) VALUES (";
     for (var j = 0; j < inputs.length; j++) {
@@ -179,16 +185,16 @@ function insertNew() {
     }
     queryString += ");";
     console.log(queryString);
-    // try {
-    //   con.query(queryString, function(error, results, fields) {
-    //     if (error) throw error;
-    //     succesAlert.style.display = "block";
-    //     succesAlertContent.innerHTML = "New Film successfully added!"
-    //   })
-    // } catch (e) {
-    //   dangerAlert.style.display = "block";
-    //   dangerAlertContent.innerHTML = e;
-    // }
+    try {
+      con.query(queryString, function (error, results, fields) {
+        if (error) throw error;
+        succesAlert.style.display = "block";
+        succesAlertContent.innerHTML = "New Film successfully added!"
+      })
+    } catch (e) {
+      dangerAlert.style.display = "block";
+      dangerAlertContent.innerHTML = e;
+    }
   }
 
 }
@@ -216,4 +222,42 @@ function calculateSearchCriteria() {
     }
   }
   return searchCriteria;
+}
+
+function updateFilm(discid) {
+  let row = document.getElementById("row" + discid);
+  let updateString = "UPDATE BLUERAY SET ";
+
+  for (let i = 0; i < row.childNodes.length; i++) {
+    const element = row.childNodes[i];
+    if (element.id != "optionCell" + discid) {
+      if (element.id != "uhd") {
+        if (element.id != "year") {
+          updateString += element.id.toUpperCase() + " = '" + element.childNodes[0].value + "', ";
+        } else {
+          updateString += element.id.toUpperCase() + " = '" + element.childNodes[0].value + "' ";
+        }
+      } else {
+        let check = element.childNodes[0].childNodes[0].childNodes[0];
+        if (check.checked) {
+          updateString += "UHD = 'YES',";
+        } else {
+          updateString += "UHD = 'NO',";
+        }
+      }
+    }
+  }
+  updateString += "WHERE DISCID = " + discid;
+
+  try {
+    con.query(updateString, function (error, results, fields) {
+      if (error) throw error;
+      // succesAlert.style.display = "block"; FIXME: rerender Table without reloade
+      // succesAlertContent.innerHTML = "Row successfully updated!";
+      location.reload();     
+    });
+  } catch (e) {
+    dangerAlert.style.display = "block";
+    dangerAlertContent.innerHTML = e;
+  }
 }

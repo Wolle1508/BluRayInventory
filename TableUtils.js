@@ -1,6 +1,6 @@
 function renderMainTableRow(result) {
   let row = document.createElement('tr');
-  row.id = result.DISCID;
+  row.id = "row" + result.DISCID;
   let title = document.createElement('td');
   title.innerHTML = result.TITLE;
   title.id = "title" ;
@@ -33,7 +33,7 @@ function renderMainTableRow(result) {
   let optionCell = document.createElement('td');
   let optionButton = document.createElement('button');
   optionButton.id = result.DISCID;
-  optionButton.innerHTML = 'Edit'; //TODO: FIX OPTION BUTTON AFTER EDIT CANCEL
+  optionButton.innerHTML = 'Edit';
   optionButton.addEventListener("click", function (e) {
     renderEditRow(e.srcElement.id);
   })
