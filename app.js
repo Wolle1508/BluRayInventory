@@ -96,7 +96,8 @@ function renderEditRow(discid) {
           row[td].appendChild(textfield);
         }
       } else {
-        row[td].childNodes[0].style.display = "None"; //TODO: handel update
+        row[td].childNodes[0].style.display = "none"; //TODO: handel update
+        
         let confirmButton = document.createElement("button");
         confirmButton.type = "button";
         confirmButton.innerHTML = "confirm";
@@ -138,9 +139,8 @@ function cancelRowEdit(row, entry) {
         }
       }
     } else {
-      row[i].childNodes[0].style.display = "block";
-      row[i].childNodes[0].style.marginLeft = "10px";
-
+      row[i].childNodes[0].style.display = "inline";
+      
       row[i].removeChild(row[i].childNodes[1]);
       row[i].removeChild(row[i].childNodes[1]);
     }
