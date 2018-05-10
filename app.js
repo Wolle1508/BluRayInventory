@@ -15,17 +15,8 @@ con.connect(function (err) {
 
 let films;
 
-let succesAlert;
-let dangerAlert;
-let succesAlertContent;
-let dangerAlertContent;
-
 
 window.onload = function () {
-  succesAlert = document.getElementById("succesAlert");
-  dangerAlert = document.getElementById("dangerAlert");
-  succesAlertContent = document.getElementById("succesAlertContent");
-  dangerAlertContent = document.getElementById("dangerAlertContent");
   renderDropdown();
   document.getElementById('submit').addEventListener("click", function () {
     let searchCriteria = calculateSearchCriteria();
@@ -47,7 +38,12 @@ window.onload = function () {
   document.getElementById("yearButton").addEventListener("click", function (e) {
     switchButton(e.srcElement);
   });
-  getDBElements();
+
+  try {
+    getDBElements();
+  } catch (e) {
+    callDangerAlert(e);
+  }
 }
 
 function switchButton(src) {
@@ -86,9 +82,6 @@ function clearInputs(inputs) {
 
 
 function filter(searchCriteria, film) {
-  let pass = true;
-  console.log(searchCriteria);
-
   for (var criteria in searchCriteria) {
     if (searchCriteria.hasOwnProperty(criteria)) {
       if (criteria == "duration" || criteria == "year") {
@@ -113,7 +106,9 @@ function filter(searchCriteria, film) {
 function renderEditRow(discid) {
   let entryToEdit;
   for (var i = 0; i < films.length; i++) {
-    if (films[i].DISCID == discid) entryToEdit = films[i];
+    if (films[i].DISCID == discid) {
+      entryToEdit = films[i];
+    }
   }
   let row = document.getElementById("row" + discid).childNodes;
   for (var td in row) {
@@ -145,7 +140,7 @@ function renderEditRow(discid) {
         confirmButton.className = "btn btn-success btn-sm";
         confirmButton.style.marginTop = "18px";
         confirmButton.addEventListener("click", function () {
-          updateFilm(discid, entryToEdit);
+          updateFilm(discid);
         })
         row[td].appendChild(confirmButton);
 
@@ -219,16 +214,13 @@ function insertNew() {
       }
     }
     queryString += ");";
-    console.log(queryString);
     try {
       con.query(queryString, function (error, results, fields) {
         if (error) throw error;
-        succesAlert.style.display = "block";
-        succesAlertContent.innerHTML = "New Film successfully added!"
-      })
+        callSuccessAlert("Film successfully added!")
+      });
     } catch (e) {
-      dangerAlert.style.display = "block";
-      dangerAlertContent.innerHTML = e;
+      callDangerAlert(e);
     }
   }
 
@@ -272,14 +264,23 @@ function calculateSearchCriteria() {
       }
     }
   }
-  console.log(searchCriteria);
 
   return searchCriteria;
 }
 
 function updateFilm(discid) {
+  let entryToEdit;
+  let index;
   let row = document.getElementById("row" + discid);
   let updateString = "UPDATE BLUERAY SET ";
+
+  for (var i = 0; i < films.length; i++) {
+    if (films[i].DISCID == discid) {
+      entryToEdit = films[i];
+      index = i;
+    }
+  }
+
 
   for (let i = 0; i < row.childNodes.length; i++) {
     const element = row.childNodes[i];
@@ -287,30 +288,33 @@ function updateFilm(discid) {
       if (element.id != "uhd") {
         if (element.id != "year") {
           updateString += element.id.toUpperCase() + " = '" + element.childNodes[0].value + "', ";
+          entryToEdit[element.id.toUpperCase()] = element.childNodes[0].value;
         } else {
           updateString += element.id.toUpperCase() + " = '" + element.childNodes[0].value + "' ";
+          entryToEdit[element.id.toUpperCase()] = element.childNodes[0].value;
         }
       } else {
         let check = element.childNodes[0].childNodes[0].childNodes[0];
         if (check.checked) {
           updateString += "UHD = 'YES',";
+          entryToEdit["UHD"] = check.checked;
         } else {
           updateString += "UHD = 'NO',";
+          entryToEdit["UHD"] = check.checked;
         }
       }
     }
   }
+  films[index] = entryToEdit;
   updateString += "WHERE DISCID = " + discid;
 
   try {
     con.query(updateString, function (error, results, fields) {
       if (error) throw error;
-      // succesAlert.style.display = "block"; FIXME: rerender Table without reloade
-      // succesAlertContent.innerHTML = "Row successfully updated!";
-      location.reload();
+      callSuccessAlert("Edit Successfull");
+      renderMainTable(calculateSearchCriteria());
     });
   } catch (e) {
-    dangerAlert.style.display = "block";
-    dangerAlertContent.innerHTML = e;
+    callDangerAlert(e);
   }
 }

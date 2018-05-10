@@ -3,32 +3,32 @@ function renderMainTableRow(result) {
   row.id = "row" + result.DISCID;
   let title = document.createElement('td');
   title.innerHTML = result.TITLE;
-  title.id = "title" ;
+  title.id = "title";
   row.appendChild(title);
   let director = document.createElement('td');
   director.innerHTML = result.DIRECTORS;
-  director.id = "directors" ;
+  director.id = "directors";
   row.appendChild(director);
   let duration = document.createElement('td');
   duration.innerHTML = result.DURATION;
-  duration.id = "duration" ;
+  duration.id = "duration";
   row.appendChild(duration);
   let studio = document.createElement('td');
   studio.innerHTML = result.STUDIO;
-  studio.id = "studio" ;
+  studio.id = "studio";
   row.appendChild(studio);
   let uhd = document.createElement('td');
   if (result.UHD == 'YES') uhd.innerHTML = '&#x2713;';
   else uhd.innerHTML = "X";
-  uhd.id = "uhd" ;
+  uhd.id = "uhd";
   row.appendChild(uhd);
   let franchise = document.createElement('td');
   franchise.innerHTML = result.FRANCHISE;
-  franchise.id = "franchise" ;
+  franchise.id = "franchise";
   row.appendChild(franchise);
   let year = document.createElement('td');
   year.innerHTML = result.YEAR
-  year.id = "year" ;
+  year.id = "year";
   row.appendChild(year);
   let optionCell = document.createElement('td');
   let optionButton = document.createElement('button');
@@ -92,8 +92,7 @@ function renderMainTable(searchCriteria) {
     }
   }
   if (Object.size(searchResults) == 0) {
-    dangerAlertContent.innerHTML = "No Results for these search criteria!";
-    dangerAlert.style.display = "block";
+    callDangerAlert("No Results found!");
   } else {
     let table = document.getElementById('mainTable');
     table.class = "table table-striped";
