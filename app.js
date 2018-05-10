@@ -19,14 +19,14 @@ let films;
 window.onload = function () {
   renderDropdown();
   document.getElementById('submit').addEventListener("click", function () {
-    let searchCriteria = calculateSearchCriteria();
-    renderMainTable(searchCriteria);
+    renderMainTable(calculateSearchCriteria());
   });
   document.getElementById("add").addEventListener("click", function () {
     clearInputs(document.getElementById("addInputs"));
   });
   document.getElementById("submitNew").addEventListener("click", function () {
     insertNew();
+    clearInputs(document.getElementById("addInputs"));
   });
   document.getElementById("random").addEventListener("click", function () {
     let random = Math.floor((Math.random() * Object.size(films)) + 1);
@@ -82,6 +82,7 @@ function clearInputs(inputs) {
 
 
 function filter(searchCriteria, film) {
+  let pass = true;
   for (var criteria in searchCriteria) {
     if (searchCriteria.hasOwnProperty(criteria)) {
       if (criteria == "duration" || criteria == "year") {

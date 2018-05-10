@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>BluRay Inventory Beta 1</title>
+  <title>BluRay Inventory Beta 3</title>
   <!-- Insert this line above script imports  -->
   <script>
     if (typeof module === 'object') {
@@ -38,13 +38,13 @@
 
 <body>
 
-  <div class="alert alert-success collapse" id="successAlert">
+  <div class="alert alert-success collapse fixed-top" id="successAlert">
     <a id="successDismiss" class="close">&times;</a>
     <p id="successContent"></p>
   </div>
 
 
-  <div class="alert alert-danger collapse" id="dangerAlert">
+  <div class="alert alert-danger collapse fixed-top" id="dangerAlert">
     <a id="dangerDismiss" class="close">&times;</a>
     <p id="dangerContent"></p>
   </div>
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div id="searchDiv" class="container-fluid">
+  <div id="searchDiv" class="container-fluid sticky-top" style="background-color: white">
     <form id="inputs">
       <div class="row">
         <div class="col-lg-6">
@@ -153,7 +153,7 @@
                 </label>
               </div>
             </form>
-            <button type="button" value="submitNew" id="submitNew" class="btn btn-primary btn-sm">Okay</button>
+            <button type="button" value="submitNew" id="submitNew" data-dismiss="modal" class="btn btn-primary btn-sm">Okay</button>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">Close</button>
