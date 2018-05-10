@@ -82,6 +82,7 @@ function renderMainTableForRandom(film) {
 }
 
 function renderMainTable(searchCriteria) {
+  
   if (searchCriteria.uhd == false) searchCriteria.uhd = "NO";
   else delete searchCriteria.uhd;
   let searchResults = []; //REVIEW: UHD Only?
