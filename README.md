@@ -1,4 +1,4 @@
-# BluRayIntentory
+# BluRayInventory
 A Node.js/Electron Application with a MySQL 5.7 Community Database to manage a Blu-Ray Collection.
 
 
