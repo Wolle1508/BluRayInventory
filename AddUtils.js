@@ -10,13 +10,16 @@ function insertNew() { //TODO: NEW Entry in Table
         }
     }
     if (count == inputs.length - 1) {
+        let newEntry = {};
         let queryString = "INSERT INTO BLUERAY (TITLE,DIRECTORS,DURATION,STUDIO,FRANCHISE,YEAR,UHD) VALUES (";
         for (var j = 0; j < inputs.length; j++) {
             if (inputs[j].id == "uhd") {
                 if (inputs[j].checked == true) {
                     queryString += "'YES'";
+                    newEntry["UHD"] = "YES";
                 } else {
                     queryString += "'NO'";
+                    newEntry["UHD"] = "NO";
                 }
             } else {
                 if (j == inputs.length - 1) {
@@ -24,13 +27,21 @@ function insertNew() { //TODO: NEW Entry in Table
                 } else {
                     queryString += "'" + inputs[j].value + "',";
                 }
+                newEntry[inputs[j].id.toUpperCase()] = inputs[j].value;
             }
         }
         queryString += ");";
+
+
+
         try {
             con.query(queryString, function (error, results, fields) {
                 if (error) throw error;
-                callSuccessAlert("Film successfully added!")
+                getDBElements();
+                newEntry["DISCID"] = results.insertId;
+                $('#myModal').modal('hide');
+                renderMainTableForRandom(newEntry);
+                callSuccessAlert("Film Added!");
             });
         } catch (e) {
             callDangerAlert(e);

@@ -7,7 +7,7 @@ const {
   BrowserWindow
 } = electron;
 require('electron-debug')({
-  showDevTools: true
+  showDevTools: false
 });
 let mainWindow;
 

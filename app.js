@@ -39,6 +39,12 @@ window.onload = function () {
     switchButton(e.srcElement);
   });
 
+  document.addEventListener("keydown", function (e) {
+    if (e.keyCode == 116) {
+      location.reload();
+    }
+  });
+
   try {
     getDBElements();
   } catch (e) {
@@ -76,9 +82,6 @@ function clearInputs(inputs) {
     inputs[i].style.backgroundColor = "";
   }
 }
-
-
-
 
 
 Object.size = function (obj) {
