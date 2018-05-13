@@ -36,10 +36,19 @@ function renderMainTableRow(result) {
   optionButton.innerHTML = 'Edit';
   optionButton.addEventListener("click", function (e) {
     renderEditRow(e.srcElement.id);
-  })
-  optionButton.className = "btn btn-danger btn-sm";
+  });
+  optionButton.className = "btn btn-edit btn-sm";
   optionCell.id = "optionCell" + result.DISCID;
+  let deleteButton = document.createElement("button");
+  deleteButton.id = "delete" + result.DISCID;
+  deleteButton.innerHTML = "Delete";
+  deleteButton.className = "btn btn-danger btn-sm";
+  deleteButton.addEventListener("click", function () {
+    $('#deleteModal').modal('show');
+    deleteFilm(result.DISCID);
+  });
   optionCell.appendChild(optionButton);
+  optionCell.appendChild(deleteButton);
   row.appendChild(optionCell);
   return row;
 }
@@ -82,7 +91,7 @@ function renderMainTableForRandom(film) {
 }
 
 function renderMainTable(searchCriteria) {
-  
+
   if (searchCriteria.uhd == false) searchCriteria.uhd = "NO";
   else delete searchCriteria.uhd;
   let searchResults = []; //REVIEW: UHD Only?

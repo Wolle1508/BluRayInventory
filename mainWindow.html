@@ -18,6 +18,7 @@
   <script type="text/javascript" src="SearchUtils.js"></script>
   <script type="text/javascript" src="EditUtils.js"></script>
   <script type="text/javascript" src="AddUtils.js"></script>
+  <script type="text/javascript" src="DeleteUtils.js"></script>
   <script type="text/javascript" src="app.js"></script>
 
   <!-- Latest compiled and minified CSS -->
@@ -163,6 +164,28 @@
         </div>
 
       </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Film</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body" id="deleteModalBody" style="text-align: center">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="confirmDelete">Confirm</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelDelete">Cancel</button>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="container-fluid" style="margin-top : 15px; text-align: center;" id="tableDiv">
