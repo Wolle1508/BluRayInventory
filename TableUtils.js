@@ -39,16 +39,16 @@ function renderMainTableRow(result) {
   });
   optionButton.className = "btn btn-edit btn-sm";
   optionCell.id = "optionCell" + result.DISCID;
-  let deleteButton = document.createElement("button");
-  deleteButton.id = "delete" + result.DISCID;
-  deleteButton.innerHTML = "Delete";
-  deleteButton.className = "btn btn-danger btn-sm";
-  deleteButton.addEventListener("click", function () {
-    $('#deleteModal').modal('show');
-    deleteFilm(result.DISCID);
-  });
   optionCell.appendChild(optionButton);
-  optionCell.appendChild(deleteButton);
+  // let deleteButton = document.createElement("button");
+  // deleteButton.id = "delete" + result.DISCID;
+  // deleteButton.innerHTML = "Delete";
+  // deleteButton.className = "btn btn-danger btn-sm";
+  // deleteButton.addEventListener("click", function () {
+  //   $('#deleteModal').modal('show');
+  //   deleteFilm(result.DISCID);
+  // });
+  // optionCell.appendChild(deleteButton);
   row.appendChild(optionCell);
   return row;
 }

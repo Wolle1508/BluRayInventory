@@ -5,14 +5,14 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "admin",
-  database: "bluray",
+  database: "blueray",
 });
 
 con.connect(function (err) {
   if (err) throw err;
 });
 
-
+//TODO: function to clear main search and main Table
 let films;
 
 

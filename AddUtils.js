@@ -1,4 +1,4 @@
-function insertNew() { //TODO: NEW Entry in Table
+function insertNew() { 
     let inputs = document.getElementById('addInputs');
     let count = 0;
     for (var i = 0; i < inputs.length; i++) {
