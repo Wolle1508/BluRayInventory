@@ -16,7 +16,7 @@ app.on('ready', function() {
   mainWindow.setMenu(null);
   mainWindow.maximize();
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'mainWindow.html'),
+    pathname: path.join(__dirname, '/src/mainWindow.html'),
     protocol: 'file:',
     slashes: true
   }));
