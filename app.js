@@ -1,11 +1,13 @@
 var mysql = require('mysql');
 var $ = require("jquery")(window);
+var config = require(process.env.APPDATA + "/bluray/config.json");
+
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "admin",
-  database: "blueray",
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.database,
 });
 
 con.connect(function (err) {
@@ -70,7 +72,7 @@ function switchButton(src) {
 }
 
 function getDBElements() {
-  con.query('SELECT * FROM blueray ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
+  con.query('SELECT * FROM bluray ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
     if (error) throw error;
     films = results;
   });

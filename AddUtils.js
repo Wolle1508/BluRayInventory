@@ -1,3 +1,5 @@
+var config = require(process.env.APPDATA + "/bluray/config.json");
+
 function insertNew() { 
     let inputs = document.getElementById('addInputs');
     let count = 0;
@@ -11,7 +13,7 @@ function insertNew() {
     }
     if (count == inputs.length - 1) {
         let newEntry = {};
-        let queryString = "INSERT INTO BLUERAY (TITLE,DIRECTORS,DURATION,STUDIO,FRANCHISE,YEAR,UHD) VALUES (";
+        let queryString = "INSERT INTO " + config.table + " (TITLE,DIRECTORS,DURATION,STUDIO,FRANCHISE,YEAR,UHD) VALUES (";
         for (var j = 0; j < inputs.length; j++) {
             if (inputs[j].id == "uhd") {
                 if (inputs[j].checked == true) {

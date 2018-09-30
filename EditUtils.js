@@ -1,3 +1,5 @@
+var config = require(process.env.APPDATA + "/bluray/config.json");
+
 function renderEditRow(discid) {
     let entryToEdit;
     for (var i = 0; i < films.length; i++) {
@@ -84,7 +86,7 @@ function updateFilm(discid) {
     let entryToEdit;
     let index;
     let row = document.getElementById("row" + discid);
-    let updateString = "UPDATE BLUERAY SET ";
+    let updateString = "UPDATE " + config.table +  " SET ";
 
     for (var i = 0; i < films.length; i++) {
         if (films[i].DISCID == discid) {
