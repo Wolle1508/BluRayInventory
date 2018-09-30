@@ -19,6 +19,7 @@
   <script type="text/javascript" src="EditUtils.js"></script>
   <script type="text/javascript" src="AddUtils.js"></script>
   <script type="text/javascript" src="DeleteUtils.js"></script>
+  <script type="text/javascript" src="ExportUtils.js"></script>
   <script type="text/javascript" src="app.js"></script>
 
   <!-- Latest compiled and minified CSS -->
@@ -40,151 +41,214 @@
 </head>
 
 <body>
+  <div id="wrap">
 
-  <div class="alert alert-success collapse fixed-top" id="successAlert">
-    <a id="successDismiss" class="close">&times;</a>
-    <p id="successContent"></p>
-  </div>
-
-
-  <div class="alert alert-danger collapse fixed-top" id="dangerAlert">
-    <a id="dangerDismiss" class="close">&times;</a>
-    <p id="dangerContent"></p>
-  </div>
+    <div class="alert alert-success collapse fixed-top" id="successAlert">
+      <a id="successDismiss" class="close">&times;</a>
+      <p id="successContent"></p>
+    </div>
 
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-4">
-        <h3>Blu-Ray Inventory</h3>
-      </div>
-      <div class="col-lg-8">
+    <div class="alert alert-danger collapse fixed-top" id="dangerAlert">
+      <a id="dangerDismiss" class="close">&times;</a>
+      <p id="dangerContent"></p>
+    </div>
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+          <h3>Blu-Ray Inventory</h3>
+        </div>
+        <div class="col-lg-8">
+        </div>
       </div>
     </div>
-  </div>
-  <div id="searchDiv" class="container-fluid sticky-top" style="background-color: white">
-    <form id="inputs">
-      <div class="row">
-        <div class="col-lg-6">
-          <input type="text" id="title" placeholder="Title" class="form-control"></input>
-        </div>
-        <div class="col-lg-6">
-          <input type="text" id="directors" placeholder="Director(s)" class="form-control"></input>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="row">
-            <div class="col-1" style="text-align: center">
-              <button type="button" class="btn btn-default btn-sm" style="margin-top: 18px;" id="durationButton" value="=">=</button>
-            </div>
-            <div class="col-11">
-              <input type="text" id="duration" placeholder="Duration" class="form-control"></input>
-            </div>
+    <div id="searchDiv" class="container-fluid sticky-top" style="background-color: white">
+      <form id="inputs">
+        <div class="row">
+          <div class="col-lg-6">
+            <input type="text" id="title" placeholder="Title" class="form-control"></input>
+          </div>
+          <div class="col-lg-6">
+            <input type="text" id="directors" placeholder="Director(s)" class="form-control"></input>
           </div>
         </div>
-        <div class="col-lg-6">
-          <input type="text" id="studio" placeholder="Studio" class="form-control"></input>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="row">
-            <div class="col-1" style="text-align: center">
-              <button type="button" class="btn btn-default btn-sm" style="margin-top: 18px;" id="yearButton" value="=">=</button>
-            </div>
-            <div class="col-11">
-              <input type="text" id="year" placeholder="Year" class="form-control"></input>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-1" style="text-align: center">
+                <button type="button" class="btn btn-default btn-sm" style="margin-top: 18px;" id="durationButton"
+                  value="=">=</button>
+              </div>
+              <div class="col-11">
+                <input type="text" id="duration" placeholder="Duration" class="form-control"></input>
+              </div>
             </div>
           </div>
+          <div class="col-lg-6">
+            <input type="text" id="studio" placeholder="Studio" class="form-control"></input>
+          </div>
         </div>
-        <div class="col-lg-6" style="margin-top: 12px;">
-          <div id="varientDropdown"></div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-1" style="text-align: center">
+                <button type="button" class="btn btn-default btn-sm" style="margin-top: 18px;" id="yearButton" value="=">=</button>
+              </div>
+              <div class="col-11">
+                <input type="text" id="year" placeholder="Year" class="form-control"></input>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" style="margin-top: 12px;">
+            <div id="varientDropdown"></div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top : 15px;">
+          <div class="col-lg-6" id="dropdown" style=" margin-bottom: 15px;"></div>
+          <div class="col-lg-2" style="margin-top : 4px;">
+            <button type="button" value="submit" id="submit" class="btn btn-primary btn-sm">Submit</button>
+          </div>
+          <div class="col-lg-2" style="margin-top : 4px; text-align: center;">
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="add">Add
+              New
+              Film</button>
+          </div>
+          <div class="col-lg-2" style="margin-top : 4px; text-align: right;">
+            <button type="button" value="random" id="random" class="btn btn-success btn-sm">Random</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+
+    <div id="addDiv" class="container-fluid">
+
+      <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add New Film</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body form-group">
+              <form id="addInputs">
+                <input type="text" id="title" placeholder="Title" class="form-control"></input>
+                <input type="text" id="directors" placeholder="Director(s)" class="form-control"></input>
+                <input type="text" id="duration" placeholder="Duration" class="form-control"></input>
+                <input type="text" id="studio" placeholder="Studio" class="form-control"></input>
+                <input type="text" id="franchise" placeholder="Franchise" class="form-control"></input>
+                <input type="text" id="year" placeholder="Year" class="form-control"></input>
+                <div class="form-check" style="padding-left: 0px;">
+                  <label>
+                    <input type="checkbox" name="check" checked id="uhd">
+                    <span class="label-text">UHD</span>
+                  </label>
+                </div>
+              </form>
+              <button type="button" value="submitNew" id="submitNew" class="btn btn-primary btn-sm">Okay</button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">Close</button>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <div class="row" style="margin-top : 15px;">
-        <div class="col-lg-6" id="dropdown" style=" margin-bottom: 15px;"></div>
-        <div class="col-lg-2" style="margin-top : 4px;">
-          <button type="button" value="submit" id="submit" class="btn btn-primary btn-sm">Submit</button>
-        </div>
-        <div class="col-lg-2" style="margin-top : 4px; text-align: center;">
-          <!-- Trigger the modal with a button -->
-          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" id="add">Add New Film</button>
-        </div>
-        <div class="col-lg-2" style="margin-top : 4px; text-align: right;">
-          <button type="button" value="random" id="random" class="btn btn-success btn-sm">Random</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-
-
-
-  <div id="addDiv" class="container-fluid">
+    </div>
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="deleteModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Add New Film</h4>
+            <h4 class="modal-title">Delete Film</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          <div class="modal-body form-group">
-            <form id="addInputs">
-              <input type="text" id="title" placeholder="Title" class="form-control"></input>
-              <input type="text" id="directors" placeholder="Director(s)" class="form-control"></input>
-              <input type="text" id="duration" placeholder="Duration" class="form-control"></input>
-              <input type="text" id="studio" placeholder="Studio" class="form-control"></input>
-              <input type="text" id="franchise" placeholder="Franchise" class="form-control"></input>
-              <input type="text" id="year" placeholder="Year" class="form-control"></input>
-              <div class="form-check" style="padding-left: 0px;">
-                <label>
-                  <input type="checkbox" name="check" checked id="uhd">
-                  <span class="label-text">UHD</span>
-                </label>
-              </div>
-            </form>
-            <button type="button" value="submitNew" id="submitNew" class="btn btn-primary btn-sm">Okay</button>
+          <div class="modal-body" id="deleteModalBody" style="text-align: center">
+
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel">Close</button>
+            <button type="button" class="btn btn-danger" id="confirmDelete">Confirm</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelDelete">Cancel</button>
           </div>
         </div>
 
       </div>
     </div>
-  </div>
 
-  <!-- Modal -->
-  <div id="deleteModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <!-- Modal -->
+    <div id="exportModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Delete Film</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Export</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body form-group" id="deleteModalBody" style="text-align: center">
+            <input type="text" id="path" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="confirmExport">Confirm</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelDelete">Cancel</button>
+          </div>
         </div>
-        <div class="modal-body" id="deleteModalBody" style="text-align: center">
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" id="confirmDelete">Confirm</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelDelete">Cancel</button>
-        </div>
       </div>
+    </div>
 
+    <!-- Modal -->
+    <div id="aboutModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Export</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body form-group" id="deleteModalBody" style="text-align: center">
+            A little practice project i started to keep my programming game up during a dull semester. Not intended to
+            be taken seriously. Purely intended to practise my JS Programming and experimenting with Node.js, Electron
+            and now git.
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="container-fluid" style="margin-top : 15px; text-align: center; padding-bottom: 50px;" id="tableDiv">
+      <table id="mainTable" class="table table-bordered">
+
+      </table>
     </div>
   </div>
-  <div class="container-fluid" style="margin-top : 15px; text-align: center;" id="tableDiv">
-    <table id="mainTable" class="table table-bordered">
-
-    </table>
+  <div id=footer style="display: none;">
+    <div>
+      <div class="row">
+        <div class="col-lg-2" style="text-align: left">
+          <span id="credit" data-toggle="modal" data-target="#aboutModal">&copy; Niklas Wollburg</span>
+        </div>
+        <div class="col-lg-9" style="text-align: right">
+          <button type="button" id="exportButton" class="btn btn-primary" data-toggle="modal" data-target="#exportModal">Export</button>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

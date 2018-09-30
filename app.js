@@ -1,6 +1,8 @@
 var mysql = require('mysql');
 var $ = require("jquery")(window);
 var config = require(process.env.APPDATA + "/bluray/config.json");
+const excel = require('node-excel-export');
+var fs = require('fs');
 
 
 var con = mysql.createConnection({
@@ -23,6 +25,7 @@ window.onload = function () {
   renderVarientDropdown();
   document.getElementById('submit').addEventListener("click", function () {
     renderMainTable(calculateSearchCriteria());
+    document.getElementById("footer").style.display = "block";
   });
   document.getElementById("add").addEventListener("click", function () {
     clearInputs(document.getElementById("addInputs"));
@@ -41,6 +44,18 @@ window.onload = function () {
   document.getElementById("yearButton").addEventListener("click", function (e) {
     switchButton(e.srcElement);
   });
+
+  document.getElementById("credit").addEventListener("mouseenter", function () {
+    document.getElementById("credit").style.textDecoration = "underline";
+    document.getElementById("credit").style.cursor = "pointer";
+  });
+  document.getElementById("credit").addEventListener("mouseleave", function () {
+    document.getElementById("credit").style.textDecoration = "";
+  });
+  document.getElementById("exportButton").addEventListener("click", function () {
+    document.getElementById("path").value = config.exportPath;
+  });
+
 
   document.addEventListener("keydown", function (e) {
     if (e.keyCode == 116) {

@@ -1,5 +1,3 @@
-var config = require(process.env.APPDATA + "/bluray/config.json");
-
 function insertNew() { 
     let inputs = document.getElementById('addInputs');
     let count = 0;

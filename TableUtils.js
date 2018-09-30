@@ -99,5 +99,10 @@ function renderMainTable(searchCriteria) {
     for (var i = 0; i < searchResults.length; i++) {
       table.appendChild(renderMainTableRow(searchResults[i]));
     }
+
+    document.getElementById("confirmExport").addEventListener("click", function () {
+      excelExport(searchResults);
+      $('#exportModal').modal('hide');
+    })
   }
 }
