@@ -43,6 +43,13 @@ function filter(searchCriteria, film) {
                 } else if (condition == ">") {
                     if (film[criteria.toUpperCase()] < searchCriteria[criteria].value) pass = false;
                 }
+            } else if (criteria == "varient") {
+                if (searchCriteria[criteria] == "standart") {
+                    if (film["UHD"] == "YES") pass = false;
+                }
+                if (searchCriteria[criteria] == "uhd") {
+                    if (film["UHD"] == "NO") pass = false;
+                }
             } else {
                 if (film[criteria.toUpperCase()].includes(searchCriteria[criteria]) == false) {
                     pass = false;

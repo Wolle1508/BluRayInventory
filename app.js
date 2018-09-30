@@ -20,6 +20,7 @@ let films;
 
 window.onload = function () {
   renderDropdown();
+  renderVarientDropdown();
   document.getElementById('submit').addEventListener("click", function () {
     renderMainTable(calculateSearchCriteria());
   });
