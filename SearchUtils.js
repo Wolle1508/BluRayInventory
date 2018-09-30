@@ -6,7 +6,7 @@ function calculateSearchCriteria() {
         if (inputs.hasOwnProperty(input)) {
             if (inputs[input].type != "button") {
                 if (inputs[input].id == "uhd") searchCriteria[inputs[input].id] = inputs[input].checked;
-                else if (inputs[input].id == "franchise" && inputs[input].value == "All");
+                else if (inputs[input].id == "franchise" && inputs[input].value == "Franchise");
                 else if (inputs[input].value != "") {
                     if (inputs[input].id == "duration") {
                         let conVal = document.getElementById("durationButton").value;
