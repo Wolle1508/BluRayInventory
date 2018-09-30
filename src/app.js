@@ -15,6 +15,8 @@ var con = mysql.createConnection({
 con.connect(function (err) {
   if (err) throw err;
 });
+console.log(config);
+
 
 //TODO: function to clear main search and main Table
 let films;
@@ -88,7 +90,7 @@ function switchButton(src) {
 }
 
 function getDBElements() {
-  con.query('SELECT * FROM bluray ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
+  con.query('SELECT * FROM ' + config.table +  ' ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
     if (error) throw error;
     films = results;
   });
