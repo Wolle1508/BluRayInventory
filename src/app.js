@@ -90,7 +90,7 @@ function switchButton(src) {
 }
 
 function getDBElements() {
-  con.query('SELECT * FROM ' + config.table +  ' ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
+  con.query('SELECT * FROM ' + config.table + ' ORDER BY FRANCHISE, YEAR, TITLE ASC', function (error, results, fields) {
     if (error) throw error;
     films = results;
   });
