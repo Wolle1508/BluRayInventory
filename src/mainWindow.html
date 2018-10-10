@@ -11,7 +11,7 @@
     }
   </script>
 
-
+  <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript" src="Utils/TableUtils.js"></script>
   <script type="text/javascript" src="Utils/DropdownUtils.js"></script>
   <script type="text/javascript" src="Utils/AlertUtils.js"></script>
@@ -20,7 +20,8 @@
   <script type="text/javascript" src="Utils/AddUtils.js"></script>
   <script type="text/javascript" src="Utils/DeleteUtils.js"></script>
   <script type="text/javascript" src="Utils/ExportUtils.js"></script>
-  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="Utils/ConfigUtils.js"></script>
+
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -60,7 +61,8 @@
         <div class="col-lg-4">
           <h3>Blu-Ray Inventory</h3>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-8" style="text-align: right">
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#settingsModal" id="settingsButton">&#x2699;</button>
         </div>
       </div>
     </div>
@@ -210,7 +212,7 @@
     </div>
 
     <!-- Modal -->
-    <div id="aboutModal" class="modal fade" role="dialog">
+    <div id="settingsModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -219,17 +221,44 @@
             <h4 class="modal-title">Export</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          <div class="modal-body form-group" id="deleteModalBody" style="text-align: center">
-            A little practice project i started to keep my programming game up during a dull semester. Not intended to
-            be taken seriously. Purely intended to practise my JS Programming and experimenting with Node.js, Electron
-            and now git.
+          <div class="modal-body form-group" id="settingsModalBody" style="text-align: center">
+            <form id="settingsForm">
+                <input type="text" id="host" class="form-control">
+                <input type="text" id="user" class="form-control">
+                <input type="text" id="password" class="form-control">
+                <input type="text" id="database" class="form-control">
+                <input type="text" id="table" class="form-control">
+            </form>
           </div>
           <div class="modal-footer">
+            <button class="btn btn-primary" id="saveSettings" data-dismiss="modal">Save</button>
           </div>
         </div>
 
       </div>
     </div>
+
+        <!-- Modal -->
+        <div id="aboutModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+      
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Export</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body form-group" id="deleteModalBody" style="text-align: center">
+                  A little practice project i started to keep my programming game up during a dull semester. Not intended to
+                  be taken seriously. Purely intended to practise my JS Programming and experimenting with Node.js, Electron
+                  and now git.
+                </div>
+                <div class="modal-footer">
+                </div>
+              </div>
+      
+            </div>
+          </div>
 
 
     <div class="container-fluid" style="margin-top : 15px; text-align: center; padding-bottom: 50px;" id="tableDiv">

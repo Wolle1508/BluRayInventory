@@ -15,7 +15,6 @@ var con = mysql.createConnection({
 con.connect(function (err) {
   if (err) throw err;
 });
-console.log(config);
 
 
 //TODO: function to clear main search and main Table
@@ -56,6 +55,14 @@ window.onload = function () {
   });
   document.getElementById("exportButton").addEventListener("click", function () {
     document.getElementById("path").value = config.exportPath;
+  });
+
+  document.getElementById("settingsButton").addEventListener("click", function(){
+    renderConfigModal();
+  });
+
+  document.getElementById("saveSettings").addEventListener("click", function(){
+    saveSettings();
   });
 
 
