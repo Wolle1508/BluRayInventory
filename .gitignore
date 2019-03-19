@@ -4,3 +4,5 @@
 /.vscode/*
 /assets/*
 /release-builds/*
+/bluray-win32-x64
+bluray.*
