@@ -26,7 +26,7 @@ input[type="radio"] {
 
 /*Check box*/
 
-input[type="checkbox"]+.label-text:before {
+input[type="checkbox"] + .label-text:before {
 	content: "\f096";
 	font-family: "FontAwesome";
 	speak: none;
@@ -41,24 +41,24 @@ input[type="checkbox"]+.label-text:before {
 	margin-right: 5px;
 }
 
-input[type="checkbox"]:checked+.label-text:before {
+input[type="checkbox"]:checked + .label-text:before {
 	content: "\f14a";
 	color: #2980b9;
 	animation: effect 250ms ease-in;
 }
 
-input[type="checkbox"]:disabled+.label-text {
+input[type="checkbox"]:disabled + .label-text {
 	color: #aaa;
 }
 
-input[type="checkbox"]:disabled+.label-text:before {
+input[type="checkbox"]:disabled + .label-text:before {
 	content: "\f0c8";
 	color: #ccc;
 }
 
 /*Radio box*/
 
-input[type="radio"]+.label-text:before {
+input[type="radio"] + .label-text:before {
 	content: "\f10c";
 	font-family: "FontAwesome";
 	speak: none;
@@ -73,24 +73,24 @@ input[type="radio"]+.label-text:before {
 	margin-right: 5px;
 }
 
-input[type="radio"]:checked+.label-text:before {
+input[type="radio"]:checked + .label-text:before {
 	content: "\f192";
 	color: #8e44ad;
 	animation: effect 250ms ease-in;
 }
 
-input[type="radio"]:disabled+.label-text {
+input[type="radio"]:disabled + .label-text {
 	color: #aaa;
 }
 
-input[type="radio"]:disabled+.label-text:before {
+input[type="radio"]:disabled + .label-text:before {
 	content: "\f111";
 	color: #ccc;
 }
 
 /*Radio Toggle*/
 
-.toggle input[type="radio"]+.label-text:before {
+.toggle input[type="radio"] + .label-text:before {
 	content: "\f204";
 	font-family: "FontAwesome";
 	speak: none;
@@ -105,17 +105,17 @@ input[type="radio"]:disabled+.label-text:before {
 	margin-right: 10px;
 }
 
-.toggle input[type="radio"]:checked+.label-text:before {
+.toggle input[type="radio"]:checked + .label-text:before {
 	content: "\f205";
 	color: #16a085;
 	animation: effect 250ms ease-in;
 }
 
-.toggle input[type="radio"]:disabled+.label-text {
+.toggle input[type="radio"]:disabled + .label-text {
 	color: #aaa;
 }
 
-.toggle input[type="radio"]:disabled+.label-text:before {
+.toggle input[type="radio"]:disabled + .label-text:before {
 	content: "\f204";
 	color: #ccc;
 }
@@ -140,8 +140,8 @@ input[type="radio"]:disabled+.label-text:before {
 
 .btn-edit {
 	color: #ffffff;
-	background-color: #DE6133;
-	border-color: #BD770F;
+	background-color: #de6133;
+	border-color: #bd770f;
 }
 
 .btn-edit:hover,
@@ -150,8 +150,8 @@ input[type="radio"]:disabled+.label-text:before {
 .btn-edit.active,
 .open .dropdown-toggle.btn-edit {
 	color: #ffffff;
-	background-color: #D68353;
-	border-color: #BD770F;
+	background-color: #d68353;
+	border-color: #bd770f;
 }
 
 .btn-edit:active,
@@ -175,12 +175,12 @@ fieldset[disabled] .btn-edit:active,
 .btn-edit.disabled.active,
 .btn-edit[disabled].active,
 fieldset[disabled] .btn-edit.active {
-	background-color: #DE6133;
-	border-color: #BD770F;
+	background-color: #de6133;
+	border-color: #bd770f;
 }
 
 .btn-edit .badge {
-	color: #DE6133;
+	color: #de6133;
 	background-color: #ffffff;
 }
 
@@ -191,4 +191,4 @@ fieldset[disabled] .btn-edit.active {
 	height: 60px; /* Set the fixed height of the footer here */
 	line-height: 60px; /* Vertically center the text there */
 	background-color: #ffffff;
-  }
+}
