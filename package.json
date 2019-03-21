@@ -1,29 +1,30 @@
 {
-  "name": "bluray",
-  "version": "0.4.18",
-  "description": "BluRay Inventory",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron .",
-    "package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"BluRay Inventory\""
-  },
-  "author": "Niklas Wollburg",
-  "license": "ISC",
-  "dependencies": {
-    "boostrap": "^2.0.0",
-    "dialog": "^0.3.1",
-    "electron-debug": "^1.5.0",
-    "electron-packager": "^12.1.1",
-    "fresh": "^0.5.2",
-    "jquery": "^3.3.1",
-    "mime": "^2.3.1",
-    "mysql": "^2.16.0",
-    "node-excel-export": "^1.4.4",
-    "npm": "^6.4.1",
-    "pillarjs": "^1.0.0-beta2",
-    "remote": "^0.2.6"
-  },
-  "devDependencies": {
-    "electron": "^2.0.8"
-  }
+	"name": "bluray",
+	"version": "0.4.18",
+	"description": "BluRay Inventory",
+	"main": "main.js",
+	"scripts": {
+		"start": "electron .",
+		"package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"BluRay Inventory\""
+	},
+	"author": "Niklas Wollburg",
+	"license": "ISC",
+	"dependencies": {
+		"boostrap": "^2.0.0",
+		"dialog": "^0.3.1",
+		"electron-debug": "^1.5.0",
+		"electron-packager": "^12.1.1",
+		"fresh": "^0.5.2",
+		"jquery": "^3.3.1",
+		"mime": "^2.3.1",
+		"mysql": "^2.16.0",
+		"node-excel-export": "^1.4.4",
+		"npm": "^6.4.1",
+		"pillarjs": "^1.0.0-beta2",
+		"remote": "^0.2.6"
+	},
+	"devDependencies": {
+		"electron": "^2.0.8",
+		"electron-prebuilt": "^1.4.13"
+	}
 }
