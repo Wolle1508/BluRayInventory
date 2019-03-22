@@ -24,13 +24,12 @@
 		"jquery": "^3.3.1",
 		"mime": "^2.3.1",
 		"node-excel-export": "^1.4.4",
+		"node-rest-client": "^3.1.0",
 		"npm": "^6.4.1",
 		"pillarjs": "^1.0.0-beta2",
-		"remote": "^0.2.6",
-		"sqlite3": "^4.0.6"
+		"remote": "^0.2.6"
 	},
 	"devDependencies": {
-		"electron": "^2.0.18",
-		"electron-builder": "^20.39.0"
+		"electron": "^2.0.18"
 	}
 }

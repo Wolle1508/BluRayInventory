@@ -1,10 +1,7 @@
 function renderDropdown() {
-	var sql = 'SELECT DISTINCT FRANCHISE FROM ' + config.table + ' ORDER BY FRANCHISE ASC';
-	db.all(sql, [], (err, rows) => {
-		if (err) {
-			throw err;
-		}
-		var results = rows;
+	client.get('http://resttest.lan/franchises', function(data, response) {
+		// parsed response body as js object
+		var results = data;
 		let select = document.createElement('select');
 		select.className = 'form-control';
 		select.id = 'franchise';

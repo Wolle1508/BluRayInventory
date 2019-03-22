@@ -2,21 +2,25 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 
-const { app, BrowserWindow } = electron;
+const {
+     app,
+     BrowserWindow
+} = electron;
 require('electron-debug')({
-	showDevTools: true
+     showDevTools: true
 });
 let mainWindow;
 
-app.on('ready', function() {
-	mainWindow = new BrowserWindow({});
-	mainWindow.setMenu(null);
-	mainWindow.maximize();
-	mainWindow.loadURL(
-		url.format({
-			pathname: path.join(__dirname, '/src/mainWindow.html'),
-			protocol: 'file:',
-			slashes: true
-		})
-	);
+app.on('ready', function () {
+     mainWindow = new BrowserWindow({});
+     mainWindow.setMenu(null);
+     mainWindow.maximize();
+     mainWindow.loadURL(
+          url.format({
+               pathname: path.join(__dirname, '/src/mainWindow.html'),
+               protocol: 'file:',
+               slashes: true
+          })
+     );
+     mainWindow.on('closed', () => app.quit());
 });
