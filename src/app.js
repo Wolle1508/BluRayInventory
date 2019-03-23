@@ -17,11 +17,10 @@ function getFilms() {
 }
 window.onload = function () {
      getFilms();
-     renderDropdown();
-     renderVarientDropdown();
+     DropdownUtils.renderDropdown();
+     DropdownUtils.renderVarientDropdown();
      document.getElementById('submit').addEventListener('click', function () {
           renderMainTable(calculateSearchCriteria());
-          document.getElementById('footer').style.display = 'block';
      });
      document.getElementById('add').addEventListener('click', function () {
           clearInputs(document.getElementById('addInputs'));

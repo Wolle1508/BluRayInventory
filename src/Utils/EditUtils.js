@@ -128,11 +128,11 @@ function updateFilm(discid) {
      }
      client.put('http://resttest.lan/films', args, function (data, response) {
           if (response.statusCode == 200) {
-               callSuccessAlert('Edit Succesfull!');
+               AlertUtils.callSuccessAlert('Edit Succesfull!');
                renderMainTableForRandom(editedEntry);
                getFilms();
           } else {
-               callDangerAlert(response.statusMessage);
+               AlertUtils.callDangerAlert(response.statusMessage);
           }
      });
 }

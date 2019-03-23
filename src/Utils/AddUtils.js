@@ -43,11 +43,11 @@ function insertNew() {
      client.post('http://resttest.lan/films', args, function (data, response) {
           // parsed response body as js object
           if (response.statusCode == 200) {
-               callSuccessAlert('Film added');
+               AlertUtils.callSuccessAlert('Film added');
                renderMainTableForRandom(newEntry);
                $('#myModal').modal('hide');
           } else {
-               callDangerAlert(response.statusMessage);
+               AlertUtils.callDangerAlert(response.statusMessage);
           }
      });
 }

@@ -1,35 +1,35 @@
 {
-	"name": "bluray",
-	"version": "0.4.18",
-	"description": "BluRay Inventory",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Wolle1508/BluRayInventory.git"
-	},
-	"main": "main.js",
-	"scripts": {
-		"start": "electron .",
-		"package-win": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"BluRay Inventory\"",
-		"postinstall": "electron-builder install-app-deps"
-	},
-	"author": "Niklas Wollburg",
-	"license": "ISC",
-	"dependencies": {
-		"boostrap": "^2.0.0",
-		"dialog": "^0.3.1",
-		"electron-debug": "^1.5.0",
-		"electron-packager": "^12.1.1",
-		"electron-rebuild": "^1.8.4",
-		"fresh": "^0.5.2",
-		"jquery": "^3.3.1",
-		"mime": "^2.3.1",
-		"node-excel-export": "^1.4.4",
-		"node-rest-client": "^3.1.0",
-		"npm": "^6.4.1",
-		"pillarjs": "^1.0.0-beta2",
-		"remote": "^0.2.6"
-	},
-	"devDependencies": {
-		"electron": "^2.0.18"
-	}
+     "name": "bluray",
+     "version": "0.4.18",
+     "description": "BluRay Inventory",
+     "repository": {
+          "type": "git",
+          "url": "https://github.com/Wolle1508/BluRayInventory.git"
+     },
+     "main": "main.js",
+     "scripts": {
+          "start": "electron .",
+          "package-win": "electron-packager . BluRay Inventory --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"BluRay Inventory\"",
+          "postinstall": "electron-builder install-app-deps"
+     },
+     "author": "Niklas Wollburg",
+     "license": "ISC",
+     "dependencies": {
+          "boostrap": "^2.0.0",
+          "dialog": "^0.3.1",
+          "electron-debug": "^1.5.0",
+          "fresh": "^0.5.2",
+          "jquery": "^3.3.1",
+          "mime": "^2.3.1",
+          "node-excel-export": "^1.4.4",
+          "node-rest-client": "^3.1.0",
+          "npm": "^6.4.1",
+          "pillarjs": "^1.0.0-beta2",
+          "remote": "^0.2.6"
+     },
+     "devDependencies": {
+          "electron": "^2.0.18",
+          "electron-packager": "^12.1.1",
+          "electron-rebuild": "^1.8.4"
+     }
 }
