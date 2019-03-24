@@ -1,5 +1,6 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
+
 #successAlert {
      position: absolute;
      width: 50%;
@@ -15,6 +16,11 @@
      left: 25%;
 }
 
+
+:root {
+     --darkmode: #282828;
+}
+
 input {
      margin-top: 15px;
      margin-bottom: 15px;
@@ -24,12 +30,22 @@ body {
      padding-top: 50px;
      padding-left: 50px;
      padding-right: 50px;
+     background-color: var(--darkmode);
+     color: white;
+}
+
+form {
+     background-color: var(--darkmode);
+}
+
+div {
+     background-color: var(--darkmode);
 }
 
 label {
      position: relative;
      cursor: pointer;
-     color: #666;
+     color: var(--darkmode);
      font-size: 30px;
 }
 
@@ -44,7 +60,7 @@ input[type="radio"] {
 input[type="checkbox"]+.label-text:before {
      content: "\f096";
      font-family: "FontAwesome";
-     speak: none;
+     /* speak: none; */
      font-style: normal;
      font-weight: normal;
      font-variant: normal;
@@ -54,6 +70,14 @@ input[type="checkbox"]+.label-text:before {
      width: 1em;
      display: inline-block;
      margin-right: 5px;
+}
+
+html {
+     background-color: var(--darkmode);
+}
+
+.modal {
+     background-color: var(--darkmode);
 }
 
 input[type="checkbox"]:checked+.label-text:before {
@@ -76,7 +100,7 @@ input[type="checkbox"]:disabled+.label-text:before {
 input[type="radio"]+.label-text:before {
      content: "\f10c";
      font-family: "FontAwesome";
-     speak: none;
+     /* speak: none; */
      font-style: normal;
      font-weight: normal;
      font-variant: normal;
@@ -108,7 +132,7 @@ input[type="radio"]:disabled+.label-text:before {
 .toggle input[type="radio"]+.label-text:before {
      content: "\f204";
      font-family: "FontAwesome";
-     speak: none;
+     /* speak: none; */
      font-style: normal;
      font-weight: normal;
      font-variant: normal;
@@ -152,6 +176,20 @@ input[type="radio"]:disabled+.label-text:before {
           transform: scale(1);
      }
 }
+
+input[type="text"] {
+     background-color: var(--darkmode);
+}
+
+input:focus[type="text"] {
+     background-color: var(--darkmode);
+     color: rgb(230, 224, 224);
+}
+
+input[type="text"]::-webkit-input-placeholder {
+     color: white;
+}
+
 
 .btn-edit {
      color: #ffffff;

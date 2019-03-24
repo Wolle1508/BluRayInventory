@@ -16,6 +16,7 @@ function getFilms() {
      });
 }
 window.onload = function () {
+     // changeCSS();
      getFilms();
      DropdownUtils.renderDropdown();
      DropdownUtils.renderVarientDropdown();
@@ -58,6 +59,9 @@ window.onload = function () {
      document.getElementById('saveSettings').addEventListener('click', function () {
           saveSettings();
      });
+     document.getElementById("ChangeTheme").addEventListener("click", function () {
+          changeCSS();
+     });
 
      document.addEventListener('keydown', function (e) {
           if (e.keyCode == 116) {
@@ -65,6 +69,22 @@ window.onload = function () {
           }
      });
 };
+
+function changeCSS() {
+
+     var oldlink = document.getElementById("custom");
+
+     var newlink = document.createElement("link");
+     newlink.setAttribute("rel", "stylesheet");
+     newlink.setAttribute("type", "text/css");
+     newlink.setAttribute("id", "custom");
+     if (oldlink.getAttribute("href") == "dark.css") {
+          newlink.setAttribute("href", "light.css");
+     } else {
+          newlink.setAttribute("href", "dark.css");
+     }
+     document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
 
 function switchButton(src) {
      switch (src.value) {

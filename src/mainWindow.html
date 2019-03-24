@@ -36,7 +36,7 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
           integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous">
      </script>
-     <link rel="stylesheet" href="custom.css">
+     <link rel="stylesheet" href="dark.css" id="custom">
      <!-- Insert this line after script imports -->
      <script>
           if (window.module) module = window.module;
@@ -109,14 +109,13 @@
                          </div>
                     </div>
 
-                    <div class="row" style="margin-top : 15px;">
+                    <div class="row" style="padding-top : 15px;">
                          <div class="col-lg-6" id="dropdown" style=" margin-bottom: 15px;"></div>
                          <div class="col-lg-2" style="margin-top : 4px;">
                               <button type="button" value="submit" id="submit"
                                    class="btn btn-primary btn-sm">Submit</button>
                          </div>
                          <div class="col-lg-2" style="margin-top : 4px; text-align: center;">
-                              <!-- Trigger the modal with a button -->
                               <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                    data-target="#myModal" id="add">Add
                                    New
@@ -244,6 +243,7 @@
                          </div>
                          <div class="modal-footer">
                               <button class="btn btn-primary" id="saveSettings" data-dismiss="modal">Save</button>
+                              <button class="btn btn-default" id="ChangeTheme">Change Theme</button>
                          </div>
                     </div>
 
