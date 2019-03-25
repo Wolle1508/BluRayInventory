@@ -20,10 +20,12 @@ input {
      margin-bottom: 15px;
 }
 
+
+
 body {
      padding-top: 50px;
      padding-left: 50px;
-     padding-right: 50px;
+     padding-right: 50px !important;
 }
 
 label {
@@ -44,7 +46,7 @@ input[type="radio"] {
 input[type="checkbox"]+.label-text:before {
      content: "\f096";
      font-family: "FontAwesome";
-     speak: none;
+     /* speak: none; */
      font-style: normal;
      font-weight: normal;
      font-variant: normal;
@@ -68,70 +70,6 @@ input[type="checkbox"]:disabled+.label-text {
 
 input[type="checkbox"]:disabled+.label-text:before {
      content: "\f0c8";
-     color: #ccc;
-}
-
-/*Radio box*/
-
-input[type="radio"]+.label-text:before {
-     content: "\f10c";
-     font-family: "FontAwesome";
-     speak: none;
-     font-style: normal;
-     font-weight: normal;
-     font-variant: normal;
-     text-transform: none;
-     line-height: 1;
-     -webkit-font-smoothing: antialiased;
-     width: 1em;
-     display: inline-block;
-     margin-right: 5px;
-}
-
-input[type="radio"]:checked+.label-text:before {
-     content: "\f192";
-     color: #8e44ad;
-     animation: effect 250ms ease-in;
-}
-
-input[type="radio"]:disabled+.label-text {
-     color: #aaa;
-}
-
-input[type="radio"]:disabled+.label-text:before {
-     content: "\f111";
-     color: #ccc;
-}
-
-/*Radio Toggle*/
-
-.toggle input[type="radio"]+.label-text:before {
-     content: "\f204";
-     font-family: "FontAwesome";
-     speak: none;
-     font-style: normal;
-     font-weight: normal;
-     font-variant: normal;
-     text-transform: none;
-     line-height: 1;
-     -webkit-font-smoothing: antialiased;
-     width: 1em;
-     display: inline-block;
-     margin-right: 10px;
-}
-
-.toggle input[type="radio"]:checked+.label-text:before {
-     content: "\f205";
-     color: #16a085;
-     animation: effect 250ms ease-in;
-}
-
-.toggle input[type="radio"]:disabled+.label-text {
-     color: #aaa;
-}
-
-.toggle input[type="radio"]:disabled+.label-text:before {
-     content: "\f204";
      color: #ccc;
 }
 

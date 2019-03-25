@@ -23,6 +23,7 @@ function renderEditRow(discid) {
                          }
                     } else {
                          let textfield = document.createElement('input');
+                         textfield.type = "text";
                          textfield.className = 'form-control';
                          textfield.value = content;
                          row[td].appendChild(textfield);
@@ -118,7 +119,6 @@ function updateFilm(discid) {
           }
      }
      editedEntry.DISCID = discid;
-     // console.log(editedEntry);
 
      args = {
           data: editedEntry,
@@ -126,7 +126,7 @@ function updateFilm(discid) {
                'Content-Type': 'application/json'
           }
      }
-     client.put('http://resttest.lan/films', args, function (data, response) {
+     client.put('http://bluray.rest.api/films', args, function (data, response) {
           if (response.statusCode == 200) {
                AlertUtils.callSuccessAlert('Edit Succesfull!');
                renderMainTableForRandom(editedEntry);

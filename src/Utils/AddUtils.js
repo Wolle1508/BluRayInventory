@@ -40,7 +40,7 @@ function insertNew() {
                'Content-Type': 'application/json'
           }
      };
-     client.post('http://resttest.lan/films', args, function (data, response) {
+     client.post('http://bluray.rest.api/films', args, function (data, response) {
           // parsed response body as js object
           if (response.statusCode == 200) {
                AlertUtils.callSuccessAlert('Film added');
