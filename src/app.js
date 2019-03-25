@@ -10,13 +10,12 @@ var client = new Client();
 let films;
 
 function getFilms() {
-     client.get('http://resttest.lan/films', function (data, response) {
+     client.get('http://bluray.rest.api/films', function (data, response) {
           // parsed response body as js object
           films = data;
      });
 }
 window.onload = function () {
-     // changeCSS();
      getFilms();
      DropdownUtils.renderDropdown();
      DropdownUtils.renderVarientDropdown();
@@ -68,6 +67,7 @@ window.onload = function () {
                location.reload();
           }
      });
+
 };
 
 function changeCSS() {
@@ -78,10 +78,10 @@ function changeCSS() {
      newlink.setAttribute("rel", "stylesheet");
      newlink.setAttribute("type", "text/css");
      newlink.setAttribute("id", "custom");
-     if (oldlink.getAttribute("href") == "dark.css") {
-          newlink.setAttribute("href", "light.css");
+     if (oldlink.getAttribute("href") == "css/dark.css") {
+          newlink.setAttribute("href", "css/light.css");
      } else {
-          newlink.setAttribute("href", "dark.css");
+          newlink.setAttribute("href", "css/dark.css");
      }
      document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
 }
