@@ -23,6 +23,8 @@ function renderEditRow(discid) {
                          }
                     } else {
                          let textfield = document.createElement('input');
+                         textfield.type = "text";
+                         textfield.style.color = "white";
                          textfield.className = 'form-control';
                          textfield.value = content;
                          row[td].appendChild(textfield);
