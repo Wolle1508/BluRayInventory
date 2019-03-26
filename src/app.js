@@ -59,10 +59,6 @@ window.onload = function () {
      document.getElementById('saveSettings').addEventListener('click', function () {
           saveSettings();
      });
-     document.getElementById("ChangeTheme").addEventListener("click", function () {
-          changeCSS();
-     });
-
      document.addEventListener('keydown', function (e) {
           if (e.keyCode == 116) {
                location.reload();
@@ -77,20 +73,6 @@ function initTheme() {
           link.setAttribute('href', "css/" + config.themeConf + ".css ");
      }
 
-}
-
-function changeCSS() {
-     var oldlink = document.getElementById("theme");
-     var newlink = document.createElement("link");
-     newlink.setAttribute("rel", "stylesheet");
-     newlink.setAttribute("type", "text/css");
-     newlink.setAttribute("id", "theme");
-     if (oldlink.getAttribute("href") == "css/dark.css") {
-          newlink.setAttribute("href", "css/light.css");
-     } else {
-          newlink.setAttribute("href", "css/dark.css");
-     }
-     document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
 }
 
 function switchButton(src) {
