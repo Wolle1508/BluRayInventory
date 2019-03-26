@@ -18,6 +18,8 @@
           "boostrap": "^2.0.0",
           "dialog": "^0.3.1",
           "electron-debug": "^1.5.0",
+          "electron-packager": "^12.1.1",
+          "electron-rebuild": "^1.8.4",
           "fresh": "^0.5.2",
           "jquery": "^3.3.1",
           "mime": "^2.3.1",
@@ -28,8 +30,6 @@
           "remote": "^0.2.6"
      },
      "devDependencies": {
-          "electron": "^2.0.18",
-          "electron-packager": "^12.1.1",
-          "electron-rebuild": "^1.8.4"
+          "electron": "^2.0.18"
      }
 }
