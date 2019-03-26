@@ -1,6 +1,6 @@
 var Client = require('node-rest-client').Client;
 var $ = require('jquery')(window);
-var config = require(process.env.APPDATA + '/bluray/config.json');
+var config = require('../config.json');
 const excel = require('node-excel-export');
 var fs = require('fs');
 
@@ -10,7 +10,7 @@ var client = new Client();
 let films;
 
 function getFilms() {
-     client.get('http://bluray.rest.api/films', function (data, response) {
+     client.get(config.url + '/films', function (data, response) {
           // parsed response body as js object
           films = data;
      });
@@ -19,6 +19,7 @@ window.onload = function () {
      getFilms();
      DropdownUtils.renderDropdown();
      DropdownUtils.renderVarientDropdown();
+     initTheme();
      document.getElementById('submit').addEventListener('click', function () {
           renderMainTable(calculateSearchCriteria());
      });
@@ -70,14 +71,20 @@ window.onload = function () {
 
 };
 
+function initTheme() {
+     link = document.getElementById("theme");
+     if (link.getAttribute('href') != config.themeConf + '.css') {
+          link.setAttribute('href', "css/" + config.themeConf + ".css ");
+     }
+
+}
+
 function changeCSS() {
-
-     var oldlink = document.getElementById("custom");
-
+     var oldlink = document.getElementById("theme");
      var newlink = document.createElement("link");
      newlink.setAttribute("rel", "stylesheet");
      newlink.setAttribute("type", "text/css");
-     newlink.setAttribute("id", "custom");
+     newlink.setAttribute("id", "theme");
      if (oldlink.getAttribute("href") == "css/dark.css") {
           newlink.setAttribute("href", "css/light.css");
      } else {

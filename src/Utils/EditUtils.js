@@ -1,5 +1,3 @@
-var config = require(process.env.APPDATA + '/bluray/config.json');
-
 function renderEditRow(discid) {
      let entryToEdit;
      for (var i = 0; i < films.length; i++) {
@@ -126,7 +124,7 @@ function updateFilm(discid) {
                'Content-Type': 'application/json'
           }
      }
-     client.put('http://bluray.rest.api/films', args, function (data, response) {
+     client.put(config.url + '/films', args, function (data, response) {
           if (response.statusCode == 200) {
                AlertUtils.callSuccessAlert('Edit Succesfull!');
                renderMainTableForRandom(editedEntry);

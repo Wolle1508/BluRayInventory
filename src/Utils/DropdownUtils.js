@@ -1,6 +1,6 @@
 class DropdownUtils {
      static renderDropdown() {
-          client.get('http://bluray.rest.api/franchises', function (data, response) {
+          client.get(config.url + '/franchises', function (data, response) {
                var results = data;
                var select = document.getElementById("franchiseDrop");
                for (var i = 0; i < results.length; i++) {
