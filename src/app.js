@@ -20,6 +20,9 @@ window.onload = function () {
      DropdownUtils.renderDropdown();
      DropdownUtils.renderVarientDropdown();
      initTheme();
+     document.getElementById('inputs').addEventListener('change', function () {
+          renderMainTable(calculateSearchCriteria());
+     });
      document.getElementById('submit').addEventListener('click', function () {
           renderMainTable(calculateSearchCriteria());
      });
