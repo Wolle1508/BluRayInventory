@@ -87,8 +87,8 @@ function activateTable(data) {
                     "title": "Options",
                     "width": "10%",
                     "render": function (data, type, row, meta) {
-                         renderEditDialog(row.DISCID)
-                         return "test";
+                         var test = "<button id=" + row.DISCID + " class=\"btn btn-edit btn-small \">Edit</button>";
+                         return test;
                     }
                }
           ]

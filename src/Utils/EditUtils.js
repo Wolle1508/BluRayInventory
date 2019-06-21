@@ -1,123 +1,54 @@
-function renderEditRow(discid) {
-     let entryToEdit;
-     for (var i = 0; i < films.length; i++) {
-          if (films[i].DISCID == discid) {
-               entryToEdit = films[i];
-          }
+function renderEditDialog(row) {
+     document.getElementById("editTitle").value = row.TITLE;
+     document.getElementById("editDirectors").value = row.DIRECTORS;
+     document.getElementById("editDuration").value = row.DURATION;
+     document.getElementById("editStudio").value = row.STUDIO;
+     document.getElementById("editFranchise").value = row.FRANCHISE;
+     document.getElementById("editYear").value = row.YEAR;
+     if (row.UHD == 0) {
+          document.getElementById("editUhd").checked = false;
      }
-     let row = document.getElementById('row' + discid).childNodes;
-     for (var td in row) {
-          if (row.hasOwnProperty(td)) {
-               if (row[td].id != 'optionCell' + discid) {
-                    let content = row[td].innerHTML;
-                    row[td].innerHTML = '';
-                    if (row[td].id == 'uhd') {
-                         if (content != 'X') {
-                              row[td].innerHTML =
-                                   '<div class="form-check" style="margin-right: 15px; margin-top : 10px;"><label><input type="checkbox" name="check" checked id="uhd"><span class="label-text"></span></label></div>';
-                         } else {
-                              row[td].innerHTML =
-                                   '<div class="form-check" style="margin-right: 15px; margin-top : 10px;"><label><input type="checkbox" name="check" id="uhd"><span class="label-text"></span></label></div>';
-                         }
-                    } else {
-                         let textfield = document.createElement('input');
-                         textfield.type = "text";
-                         textfield.className = 'form-control';
-                         textfield.value = content;
-                         row[td].appendChild(textfield);
-                    }
-               } else {
-                    row[td].childNodes[0].style.display = 'none';
-
-                    let confirmButton = document.createElement('button');
-                    confirmButton.type = 'button';
-                    confirmButton.innerHTML = 'confirm';
-                    confirmButton.id = 'confirm' + discid;
-                    confirmButton.className = 'btn btn-success btn-sm';
-                    confirmButton.style.marginTop = '18px';
-                    confirmButton.addEventListener('click', function () {
-                         updateFilm(discid);
-                    });
-                    row[td].appendChild(confirmButton);
-
-                    let cancelButton = document.createElement('button');
-                    cancelButton.type = 'button';
-                    cancelButton.innerHTML = 'cancel';
-                    cancelButton.id = discid;
-                    cancelButton.className = 'btn btn-default btn-sm';
-                    cancelButton.style.marginTop = '18px';
-                    cancelButton.style.marginLeft = '5px';
-                    cancelButton.addEventListener('click', function () {
-                         cancelRowEdit(row, entryToEdit);
-                    });
-                    row[td].appendChild(cancelButton);
-               }
-          }
-     }
-}
-
-function cancelRowEdit(row, entry) {
-     for (let i = 0; i < row.length; i++) {
-          if (!row[i].id.includes('option')) {
-               if (row[i].id != 'uhd') {
-                    let content = row[i].id.toUpperCase();
-                    row[i].innerHTML = '';
-                    row[i].innerHTML = entry[content];
-               } else {
-                    if (entry.UHD == 0) {
-                         row[i].innerHTML = '';
-                         row[i].innerHTML = 'X';
-                    } else {
-                         row[i].innerHTML = '';
-                         row[i].innerHTML = '&#x2713;';
-                    }
-               }
-          } else {
-               row[i].childNodes[0].style.display = 'inline';
-
-               row[i].removeChild(row[i].childNodes[1]);
-               row[i].removeChild(row[i].childNodes[1]);
-          }
-     }
+     document.getElementById("submitEdit").addEventListener("click", function () {
+          updateFilm(row.DISCID);
+          $("#editModal").modal("hide");
+     });
+     $("#editModal").modal("show");
 }
 
 function updateFilm(discid) {
-     let row = document.getElementById("row" + discid);
+     let inputs = document.getElementById("editInputs");
      editedEntry = {};
-     for (var i = 0; i < row.childNodes.length - 1; i++) {
-          var input = row.childNodes[i].childNodes[0];
-          switch (i) {
-               case 0:
-                    editedEntry.TITLE = input.value;
-                    break;
-               case 1:
-                    editedEntry.DIRECTORS = input.value;
-                    break;
-               case 2:
-                    editedEntry.DURATION = input.value;
-                    break;
-               case 3:
-                    editedEntry.STUDIO = input.value;
-                    break;
-               case 4:
-                    if (input.childNodes[0].childNodes[0].checked) {
-                         editedEntry.UHD = "1";
-                    } else {
-                         editedEntry.UHD = "0";
-                    }
-                    break;
-               case 5:
-                    editedEntry.FRANCHISE = input.value;
-                    break;
-               case 6:
-                    editedEntry.YEAR = input.value;
-                    break;
-               default:
-                    break;
+     for (const input in inputs) {
+          if (inputs.hasOwnProperty(input)) {
+               const element = inputs[input];
+               switch (element.id) {
+                    case "editTitle":
+                         editedEntry.TITLE = element.value;
+                         break;
+                    case "editDirectors":
+                         editedEntry.DIRECTORS = element.value;
+                         break;
+                    case "editDuration":
+                         editedEntry.DURATION = element.value;
+                         break;
+                    case "editFranchise":
+                         editedEntry.FRANCHISE = element.value;
+                         break;
+                    case "editYear":
+                         editedEntry.YEAR = element.value;
+                         break;
+                    case "editStudio":
+                         editedEntry.STUDIO = element.value;
+                         break;
+                    case "editUhd":
+                         element.checked ? editedEntry.UHD = "1" : editedEntry.UHD = "0";
+                         break;
+                    default:
+                         break;
+               }
           }
      }
      editedEntry.DISCID = discid;
-
      args = {
           data: editedEntry,
           headers: {

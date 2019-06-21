@@ -1,5 +1,5 @@
 var Client = require('node-rest-client').Client;
-var $ = require('jquery')(window);
+window.$ = window.jQuery = require('jquery');
 var config = require('../config.json');
 const excel = require('node-excel-export');
 var fs = require('fs');
@@ -15,6 +15,10 @@ function getFilms() {
           films = data;
      });
 }
+
+
+
+
 window.onload = function () {
      getFilms();
      DropdownUtils.renderDropdown();
@@ -34,7 +38,7 @@ window.onload = function () {
           clearInputs(document.getElementById('addInputs'));
      });
      document.getElementById('random').addEventListener('click', function () {
-          let random = Math.floor(Math.random() * Object.size(films) + 1);
+          let random = Math.floor(Math.random() * Object.size(films));
           renderMainTableForRandom(films[random]);
      });
      document.getElementById('durationButton').addEventListener('click', function (e) {
@@ -67,8 +71,9 @@ window.onload = function () {
                location.reload();
           }
      });
-
 };
+
+
 
 function initTheme() {
      link = document.getElementById("theme");

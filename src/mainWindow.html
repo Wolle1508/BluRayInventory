@@ -22,7 +22,6 @@
      <script type="text/javascript" src="Utils/ExportUtils.js"></script>
      <script type="text/javascript" src="Utils/ConfigUtils.js"></script>
 
-
      <!-- Latest compiled and minified CSS -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -153,11 +152,9 @@
 
 
           <div id="addDiv" class="container-fluid">
-
                <!-- Modal -->
                <div id="myModal" class="modal " role="dialog">
                     <div class="modal-dialog">
-
                          <!-- Modal content-->
                          <div class="modal-content">
                               <div class="modal-header">
@@ -193,6 +190,44 @@
                               </div>
                          </div>
 
+                    </div>
+               </div>
+          </div>
+
+          <!-- Modal -->
+          <div id="editModal" class="modal " role="dialog">
+               <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                         <div class="modal-header">
+                              <h4 class="modal-title">Edit Film</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         </div>
+                         <div class="modal-body form-group">
+                              <form id="editInputs">
+                                   <input type="text" id="editTitle" placeholder="Title" class="form-control"></input>
+                                   <input type="text" id="editDirectors" placeholder="Director(s)"
+                                        class="form-control"></input>
+                                   <input type="text" id="editDuration" placeholder="Duration"
+                                        class="form-control"></input>
+                                   <input type="text" id="editStudio" placeholder="Studio" class="form-control"></input>
+                                   <input type="text" id="editFranchise" placeholder="Franchise"
+                                        class="form-control"></input>
+                                   <input type="text" id="editYear" placeholder="Year" class="form-control"></input>
+                                   <div class="form-check" style="padding-left: 0px;">
+                                        <label>
+                                             <input type="checkbox" name="check" checked id="editUhd">
+                                             <span class="label-text">UHD</span>
+                                        </label>
+                                   </div>
+                              </form>
+                         </div>
+                         <div class="modal-footer">
+                              <button type="button" value="submitEdit" id="submitEdit"
+                                   class="btn btn-primary">Okay</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal"
+                                   id="cancel">Close</button>
+                         </div>
                     </div>
                </div>
           </div>
@@ -294,7 +329,7 @@
 
           <div class="container-fluid" style="margin-top : 15px; text-align: center; padding-bottom: 50px;"
                id="tableDiv">
-               <table id="mainTable" data-page-length='20'>
+               <table id="mainTable" data-page-length='15'>
 
                </table>
           </div>
