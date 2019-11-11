@@ -7,3 +7,4 @@
 /bluray-win32-x64
 bluray.*
 config.json
+package-lock.json

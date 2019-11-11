@@ -17,19 +17,19 @@
      "dependencies": {
           "boostrap": "^2.0.0",
           "dialog": "^0.3.1",
-          "electron-debug": "^1.5.0",
-          "electron-packager": "^12.1.1",
-          "electron-rebuild": "^1.8.4",
+          "electron-debug": "^3.0.1",
+          "electron-packager": "^14.1.0",
+          "electron-rebuild": "^1.8.6",
           "fresh": "^0.5.2",
-          "jquery": "^3.3.1",
-          "mime": "^2.3.1",
+          "jquery": "^3.4.1",
+          "mime": "^2.4.4",
           "node-excel-export": "^1.4.4",
           "node-rest-client": "^3.1.0",
-          "npm": "^6.4.1",
+          "npm": "^6.13.0",
           "pillarjs": "^1.0.0-beta2",
           "remote": "^0.2.6"
      },
      "devDependencies": {
-          "electron": "^2.0.18"
+          "electron": "^7.1.1"
      }
 }
